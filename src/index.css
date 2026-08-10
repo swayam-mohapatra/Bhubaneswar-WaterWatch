@@ -1,0 +1,46 @@
+*:where(:not(svg, img, video, canvas, audio, iframe, object, embed), :not(svg *, img *, video *, canvas *, audio *, iframe *, object *, embed *)) {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Baloo 2', 'Fredoka', system-ui, sans-serif;
+  font-size: 16px;
+  color: #1d2b53;
+  background: #eaf4ff;
+  line-height: 1.5;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, rgba(255, 214, 102, 0.25), transparent 30%), #eaf4ff;
+  font-family: 'Baloo 2', 'Fredoka', system-ui, sans-serif;
+}
+
+body,
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input {
+  outline: none;
+}
+
+#root {
+  padding: 0;
+}
