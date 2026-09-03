@@ -11,7 +11,7 @@ const normalizeWeather = (data) => {
       hour: 'numeric',
       hour12: true,
     }),
-    amount: Math.round(hourlyRain[index] ?? 0),
+    amount: Number((hourlyRain[index] ?? 0).toFixed(1)),
     probability: Math.round(hourlyPop[index] ?? 0),
   }))
 
@@ -27,7 +27,7 @@ const normalizeWeather = (data) => {
     precipitationProbability,
     forecastRainNext3h,
     forecastRainNext6h,
-    rainfallIntensity: Math.round((precipitationNow + forecastRainNext3h) / 3),
+    rainfallIntensity: Number(((precipitationNow + forecastRainNext3h) / 3).toFixed(1)),
     hourlyRainfall,
     source: 'Open-Meteo',
     lastUpdated: new Date().toISOString(),

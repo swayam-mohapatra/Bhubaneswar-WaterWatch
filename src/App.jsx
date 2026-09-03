@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 import heroIllustration from './assets/heroIllustration.svg'
+import mapIllustration from './assets/mapIllustration.svg'
 import { areas } from './data/areas'
 import { floodHistory } from './data/floodHistory'
 import { calculateRisk } from './utils/riskCalculator'
@@ -93,7 +94,10 @@ function App() {
   }, [weatherData.hourlyRainfall])
 
   const filteredAreas = query.trim()
-    ? areas.filter((area) => area.name.toLowerCase().includes(query.toLowerCase()))
+    ? areas.filter((area) => {
+        const searchText = query.trim().toLowerCase()
+        return area.name.toLowerCase().includes(searchText) || area.id.includes(searchText)
+      })
     : areas
 
   const suggestions = filteredAreas.slice(0, 5)
@@ -107,6 +111,7 @@ function App() {
     const loadWeather = async () => {
       setIsLoadingWeather(true)
       setWeatherError(null)
+      setWeather(null)
       try {
         const response = await getWeather({
           latitude: selectedArea.latitude,
@@ -231,7 +236,7 @@ function App() {
             </div>
             <div className="hero-stats">
               <div className="stat-card">
-                <span>5</span>
+                <span>{areas.length}</span>
                 Focus areas covered
               </div>
               <div className="stat-card">
@@ -260,8 +265,8 @@ function App() {
             </div>
             <div className="map-placeholder">
               <img
-                src="https://www.mapsofindia.com/maps/orissa/bhubaneshwar.jpg"
-                alt="Bhubaneswar map"
+                src={mapIllustration}
+                alt="Illustrated map of Bhubaneswar risk areas"
                 className="map-image"
               />
             </div>
